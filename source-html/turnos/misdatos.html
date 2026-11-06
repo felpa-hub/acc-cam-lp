@@ -1,0 +1,197 @@
+ <!--
+MIT License
+
+Copyright (c) 2017
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <title>
+        Turnos online - Municipalidad de La Plata      </title>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+      <meta name="description" content="Web oficial para sacar turnos online en la ciudad de La Plata. Desde aquí podrás pedir turnos para Licencias de conducir, APR, Apremios y Juzgado de Faltas.">
+      <meta name="keywords" content="turnos, licencias, apr, juzgado, la plata, renovacion, catastro, municipalidad, libre de deuda, multas, automotor, ingresos brutos, seguridad e higiene, tasa SUM, convenios, consultas">
+      <meta name="author" content="Laboratorio de Innovación Tecnológica. Secretaría de Modernización. Ciudad de La Plata, Buenos Aires, Argentina">
+
+      <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href='//fonts.googleapis.com/css?family=Roboto:400,300,500,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
+      <link rel="icon" type="image/x-icon" href="https://turnos.laplata.gob.ar/public/images/favicon.ico">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/nouislider.min.css"  media="screen,projection"/>
+      <!--Import materialize.css-->
+
+
+      <link rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/angular-material.min.css">
+
+
+            <link type="text/css" rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/estilos.css?v=1789505110"/>
+      <link type="text/css" rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/licencias.css"/>
+      <!--<link type="text/css" rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/print.css"/>-->
+
+      <!-- Estilos particulares de cada sección  -->
+      <link rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/shared/turnos-tema.css?v=1789503756"><link rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/shared/misdatos.css?v=1789215969">            <link rel="stylesheet" href="https://turnos.laplata.gob.ar/public/css/shared/tipografias-turnero.css?v=1789169315">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body ng-app="MultiTurnos" class="tema-turnos">
+      <nav id="nav" class="turnos-nav">
+        <a href="https://turnos.laplata.gob.ar/" class="turnos-marca" aria-label="Municipalidad de La Plata - Inicio">
+          <img class="turnos-capital-logo" src="https://turnos.laplata.gob.ar/public/images/laplata_light.png" alt="La Plata Capital">
+          <span class="turnos-marca-separador"></span>
+          <img class="turnos-municipal-logo" src="https://turnos.laplata.gob.ar/public/images/logo_muni_black.png" alt="Municipalidad de La Plata">
+        </a>
+        <a href="https://turnos.laplata.gob.ar/faq" target="_blank" rel="noopener" class="nav-faq">Preguntas frecuentes</a>
+      </nav>
+      <main>
+        <div id="content">
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfff_ArAAAAAOJvGi0taQ8PUOmHnQDB0sonlEuZ"></script>
+<script>function onSubmit(token){var s=angular.element(document.getElementById('form')).scope();s.$applyAsync(function(){s.submitForm(token);});}</script>
+
+<div class="misdatos-wrapper" ng-controller="misdatos" ng-cloak>
+  <md-progress-linear ng-show="isLoading" md-mode="indeterminate"></md-progress-linear>
+  <div class="misdatos-encabezado" ng-show="estadoEnvio === 'formulario'">
+    <div class="icono-turnos"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M3 9H21M8 2.5V5.5M16 2.5V5.5" stroke="#fff" stroke-width="1.6"/><path d="M8.5 14L11 16.5L15.5 12" stroke="#fff" stroke-width="1.6"/></svg><span>TURNOS</span></div>
+    <h1>Sistema de turnos de la<br>Municipalidad de La Plata</h1>
+  </div>
+
+  <div class="misdatos-form" ng-show="estadoEnvio === 'formulario'">
+    <form name="frmPersona" ng-submit="avanzarOEnviar()" id="form" novalidate>
+      <div class="wizard-cabecera"><button type="button" class="wizard-volver" ng-click="volver()" aria-label="Volver">←</button><div><span class="wizard-paso">Paso {{paso}} de 3</span><h2>{{titulosPaso[paso]}}</h2></div></div>
+      <div class="wizard-progreso"><span ng-class="{activo: paso >= 1}"></span><span ng-class="{activo: paso >= 2}"></span><span ng-class="{activo: paso >= 3}"></span></div>
+
+      <section class="wizard-panel" ng-show="paso === 1">
+        <p class="wizard-ayuda">Completá tus datos para obtener tu acceso único vía mail.</p>
+        <div class="fila">
+          <div class="campo-nuevo"><label>Nombre</label><input class="input-nuevo" ng-model="form.nombre" required name="nombre" placeholder="Nombre"><div class="campo-error" ng-show="mostrarError('nombre')">{{errRequerido}}</div></div>
+          <div class="campo-nuevo"><label>Apellido</label><input class="input-nuevo" ng-model="form.apellido" required name="apellido" placeholder="Apellido"><div class="campo-error" ng-show="mostrarError('apellido')">{{errRequerido}}</div></div>
+        </div>
+        <div class="fila">
+          <div class="campo-nuevo"><label>DNI</label><input class="input-nuevo" ng-model="form.dni" inputmode="numeric" pattern="[0-9]{7,8}" minlength="7" maxlength="8" required name="dni" placeholder="DNI"><div class="campo-error" ng-show="mostrarError('dni')">{{errDNI}}</div></div>
+          <div class="campo-nuevo"><label>CUIL - CUIT</label><div class="cuil-grupo"><input class="input-nuevo" ng-model="form.cuilParte1" inputmode="numeric" pattern="[0-9]{2}" minlength="2" maxlength="2" required name="cuilParte1" aria-label="Prefijo CUIL" placeholder="xx"><span class="cuil-separador">-</span><input class="input-nuevo" ng-model="form.cuilParte2" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" required name="cuilParte2" aria-label="DNI del CUIL" placeholder="xxxxxxxx"><span class="cuil-separador">-</span><input class="input-nuevo" ng-model="form.cuilParte3" inputmode="numeric" pattern="[0-9]" minlength="1" maxlength="1" required name="cuilParte3" aria-label="Verificador CUIL" placeholder="x"></div><div class="campo-error" ng-show="cuitInvalido">{{errCUIT}}</div></div>
+        </div>
+        <div class="campo-nuevo"><label>Sexo</label><select class="input-nuevo" ng-model="form.sexo" name="sexo" required><option value="" disabled>Seleccionar</option><option value="1">Femenino</option><option value="2">Masculino</option><option value="3">Sin especificar</option></select><div class="campo-error" ng-show="mostrarError('sexo')">{{errRequerido}}</div></div>
+      </section>
+
+      <section class="wizard-panel" ng-show="paso === 2">
+        <p class="wizard-ayuda">Te enviamos el acceso a este mail. Revisá que esté bien escrito.</p>
+        <div class="fila"><div class="campo-nuevo"><label>Mail</label><input class="input-nuevo" ng-model="form.email" type="email" required name="email" placeholder="Mail"><div class="campo-error" ng-show="mostrarError('email')">{{errEmail}}</div></div><div class="campo-nuevo"><label>Confirmar mail</label><input class="input-nuevo" ng-model="form.confirmarEmail" type="email" required name="confirmarEmail" placeholder="Confirmar mail"><div class="campo-error" ng-show="form.confirmarEmail && mailNoCoincide">Los mails no coinciden</div></div></div>
+        <div class="campo-nuevo celular-campo"><p class="celular-label"><strong>Prefijo:</strong> +54 Argentina · Ingresá tu celular sin 0 y sin 15</p><div class="celular-grupo"><input class="input-nuevo celular-cod" ng-model="form.codigo_pais" inputmode="tel" pattern="\+[1-9][0-9]{0,2}" minlength="2" maxlength="4" required name="prefijo_telefonico" aria-label="Prefijo telefónico internacional" autocomplete="off" placeholder="+54"><input class="input-nuevo celular-numero" ng-model="form.telefono" inputmode="numeric" pattern="[0-9]{9,10}" minlength="9" maxlength="10" required name="telefono" placeholder="Celular"></div><div class="campo-error" ng-show="mostrarError('telefono')">{{errTelefono}}</div></div>
+      </section>
+
+      <section class="wizard-panel" ng-show="paso === 3">
+        <p class="wizard-ayuda">Dirección donde recibís las notificaciones municipales.</p>
+        <div class="campo-nuevo"><label>Localidad</label><select class="input-nuevo" ng-model="form.localidad" name="localidad" required><option value="" disabled>Seleccionar</option><option ng-repeat="loc in localidades" value="{{loc}}">{{loc}}</option></select><div class="campo-error" ng-show="mostrarError('localidad')">{{errRequerido}}</div></div>
+        <div class="fila fila-direccion"><div class="campo-nuevo campo-calle"><label>Calle</label><input class="input-nuevo" ng-model="form.calle" name="calle" maxlength="150" required placeholder="Calle"><div class="campo-error" ng-show="mostrarError('calle')">{{errRequerido}}</div></div><div class="campo-nuevo"><label>Altura</label><input class="input-nuevo" ng-model="form.altura" name="altura" maxlength="20" required placeholder="Altura"><div class="campo-error" ng-show="mostrarError('altura')">{{errRequerido}}</div></div><div class="campo-nuevo"><label>Piso</label><input class="input-nuevo" ng-model="form.piso" name="piso" maxlength="20" placeholder="Piso"></div><div class="campo-nuevo"><label>Depto</label><input class="input-nuevo" ng-model="form.depto" name="depto" maxlength="20" placeholder="Depto"></div></div>
+        <label class="campo-checkbox"><input type="checkbox" ng-model="form.aceptaTerminos" required name="aceptaTerminos"><span>Al continuar, aceptás nuestra <a href="https://www.laplata.gob.ar/#/transparencia/privacidad" target="_blank" rel="noopener noreferrer">política de privacidad</a>.</span></label>
+      </section>
+      <div class="wizard-acciones"><button class="btn-pildora" type="submit" ng-disabled="isLoading">{{paso === 3 ? 'REGISTRARME Y CONTINUAR' : 'CONTINUAR'}}</button></div>
+    </form>
+  </div>
+
+  <div class="mail-enviado-panel activo-enviado" ng-show="estadoEnvio === 'exito'"><img class="icono-hexagono" src="https://turnos.laplata.gob.ar/public/images/hexagono-check.svg" alt=""><h2>Mail enviado</h2><p>Revisá tu casilla de correo y hacé click en el enlace que te enviamos para continuar.</p><div class="mail-enviado-chip">{{form.email}}</div><small>Recordá revisar tu correo no deseado (spam).</small><a class="btn-pildora resultado-volver" href="https://turnos.laplata.gob.ar/">VOLVER AL INICIO</a></div>
+  <div class="mail-enviado-panel mail-error-panel activo-enviado" ng-show="estadoEnvio === 'error'"><div class="resultado-error-icon">!</div><h2>No pudimos enviar el email</h2><p>{{mensajeError || 'Ocurrió un problema al procesar la solicitud. Intentá nuevamente más tarde.'}}</p><button type="button" class="btn-pildora" ng-click="reintentar()">INTENTAR NUEVAMENTE</button><a class="resultado-link" href="https://turnos.laplata.gob.ar/">VOLVER AL INICIO</a></div>
+</div>
+    </div>
+    </main>
+
+  <footer class="page-footer" style="display: none;">
+        <img class="responsive-img" src="https://turnos.laplata.gob.ar/public/images/modernizacionLab.svg">
+        <svg version="1.1" class="logoLab" id="logoLab" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="903.6 604.2 320.6 319.8" enable-background="new 903.6 604.2 320.6 319.8" xml:space="preserve">
+            <path d="M985.7,694.6h12.6v43.5h27.6V749h-40.2V694.6z M1053.5,693.7h10.9l23.4,55.3h-12.6l-5-12.6h-23.4l-5,12.6h-12.6
+                L1053.5,693.7z M1066.1,726.4l-7.5-17.6l-7.5,17.6H1066.1z M1096.2,694.6h26c6.7,0,10.9,1.7,14.2,5c2.5,2.5,4.2,5.9,4.2,9.2l0,0
+                c0,5.9-3.3,10-7.5,11.7c6.7,2.5,10,5.9,10,13.4l0,0c0,10-8.4,15.1-20.9,15.1h-26V694.6z M1128,710.5c0-3.3-2.5-5.9-8.4-5.9h-11.7
+                v11.7h10.9C1124.7,716.3,1128,714.7,1128,710.5L1128,710.5z M1122.1,726.4h-14.2v12.6h14.2c5,0,8.4-1.7,8.4-5.9l0,0
+                C1131.4,728.9,1128.8,726.4,1122.1,726.4z"/>
+            <path d="M1035.9,780.8h12.6v46h-12.6C1035.9,826.8,1035.9,780.8,1035.9,780.8z M1070.2,791.7h-13.4v-10.9h39.3v10.9H1082v35.2h-12.6
+                v-35.2H1070.2z"/>
+            <g id="g1">
+                <path fill="#63C9E0" d="M992.4,769.9l16.7,16.7c0.8,0.8,0.8,1.7,0,1.7l-15.9,15.9l-18.4-18.4l15.9-15.9
+                    C990.7,769.1,991.5,769.1,992.4,769.9z"/>
+                <path fill="#5AA3D7" d="M974.8,785.8l18.4,18.4l-18.4,18.4l-15.1-15.1c-1.7-1.7-1.7-5,0-6.7L974.8,785.8z"/>
+                <path fill="#6D60A9" d="M993.2,804.2l15.9,15.9c0.8,0.8,0.5,1.2,0,1.7l-16.7,16.7c-0.8,0.8-1,0.7-1.7,0l-15.9-15.9L993.2,804.2z"/>
+            </g>
+            <g id="g2">
+                <path fill="#63C9E0" d="M1123.8,769.9l-16.7,16.7c-0.8,0.8-0.5,1.2,0,1.7l15.9,15.9l18.4-18.4l-15.9-15.9
+                    C1124.9,769.3,1124.7,769.1,1123.8,769.9z"/>
+                <path fill="#5AA3D7" d="M1141.4,785.8l-18.4,18.4l18.4,18.4l15.1-15.1c1.7-1.7,1.7-5,0-6.7L1141.4,785.8z"/>
+                <path fill="#6D60A9" d="M1123,804.2l-15.9,15.9c-0.8,0.8-0.5,1.2,0,1.7l16.7,16.7c0.8,0.8,0.8,0.8,1.7,0l15.9-15.9L1123,804.2z"/>
+            </g>
+            <path class="border-lab" fill="#5AA3D7" d="M1224.3,763.2h-16.7c0-78.7-64.5-143.2-144-143.2h-0.8v-15.9h0.8C1152.3,604.2,1223.4,675.3,1224.3,763.2z"/>
+            <path class="border-lab" fill="#5471B6" d="M1224.3,763.2c0,88.7-72.8,160.7-160.7,160.7h-0.8V908h0.8c79.5,0,144-64.5,144-144v-0.8H1224.3z"/>
+            <path class="border-lab" fill="#6D60A9" d="M1062.7,924c-87.9,0-159.1-71.2-159.1-159.9v-0.8h15.9v0.8c0,79.5,63.6,143.2,143.2,144V924z"/>
+            <path class="border-lab" fill="#63C9E0" d="M1062.7,604.2v15.9c-78.7,0.8-142.3,64.5-143.2,143.2h-15.9C904.5,675.3,974.8,605,1062.7,604.2z"/>
+      </svg>
+      <div class="turnos-footer-text">
+          <span>Sistema de Turnos</span>
+          <span class="turnos-footer-separador" aria-hidden="true">|</span>
+          <span>Municipalidad de La Plata</span>
+      </div>
+  </footer>
+
+      <script type="text/javascript" src="https://turnos.laplata.gob.ar/public/js/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="https://turnos.laplata.gob.ar/public/js/materialize.min.js"></script>
+
+      <script src="https://turnos.laplata.gob.ar/public/js/nouislider.js"></script>
+
+
+       <!--  Angular Material requires Angular.js Libraries -->
+      <script src="https://turnos.laplata.gob.ar/public/js/angular.min.js"></script>
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-sanitize.min.js"></script>
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-animate.min.js"></script>
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-moment.min.js"></script>
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-aria.min.js"></script>
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-messages.min.js"></script>
+
+      <!--  Angular niternacionalización Argentina -->
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-locale_es-ar.js"></script>
+
+      <!-- Angular Material Library  -->
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-material.min.js"></script>
+
+      <!-- Configuracion de variables globales para mi AppAngular  -->
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-default.js?v=1789169315"></script>
+
+      <!-- Scripts usadas por varias vistas sección  -->
+      <script src="https://turnos.laplata.gob.ar/public/js/shared/angular-recaptcha.js"></script>
+
+      <!-- Scripts particulares de cada vista  -->
+      <script src="https://turnos.laplata.gob.ar/views/misdatos/js/index.js?v=1792501679"></script>
+
+      <!-- Configuracion por defecto de mi app angular  -->
+      <script src="https://turnos.laplata.gob.ar/public/js/angular-ConfigApp.js?v=1789169315"></script>
+      <!-- Analytics -->
+      <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-1254659-13', 'auto');
+        ga('send', 'pageview');
+      </script>
+
+      <script type="text/javascript" src="https://turnos.laplata.gob.ar/public/js/custom.js?v=1789169315"></script>
+
+  </body>
+</html>
