@@ -61,6 +61,23 @@
 			dialog::backdrop {
 				background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
 			}
+        /* --- Accesibilidad: enlace "Saltar al contenido" --- */
+        .skip-link {
+            position: absolute;
+            top: -10000px;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 9999;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .skip-link:focus {
+            top: 10px;
+            left: 10px;
+        }
     	</style>
 
     </head>
@@ -76,7 +93,7 @@
 
     <body>
 
-		<a class="skip-link d-none" href="#contenido">
+		<a class="skip-link" href="#contenido">
 			Saltar al contenido principal
 		</a>
 	
@@ -99,13 +116,13 @@
 											<li><a href="cam-institucional.html">INSTITUCIONAL</a></li>											
 											<li><a class="active" href="#" style="padding-right: 25px;">GUÍA DE TRÁMITES <i class="fa fa">ˇ</i></a>
 												<ul class="dropdown">
-													<li><a href="https://tramites.laplata.gob.ar/licencias" target="_blank" rel="noopener noreferrer">Licencias de conducir</a></li>
-													<li><a href="https://tramites.laplata.gob.ar/comercio" target="_blank" rel="noopener noreferrer">Habilitaciones Comerciales</a></li>
-													<li><a href="https://www.apronline.gob.ar/index.php?modulo=tramites" target="_blank" rel="noopener noreferrer">APR</a></li>
-													<li><a href="https://tramites.laplata.gob.ar/obrasparticulares/" target="_blank" rel="noopener noreferrer">Obras particulares</a></li>
-													<li><a href="https://apronline.gob.ar/?modulo=tramites&tributo=15" target="_blank" rel="noopener noreferrer">Catastro</a></li>
-													<li><a href="https://tramites.laplata.gob.ar/planeamiento/" target="_blank" rel="noopener noreferrer">Planeamiento y ordenamiento ambiental</a></li>
-													<li><a href="https://tramites.laplata.gob.ar/mesaentrada/" target="_blank" rel="noopener noreferrer">Mesa general de entradas</a></li>
+													<li><a href="https://tramites.laplata.gob.ar/licencias" target="_blank" rel="noopener noreferrer" aria-label="Licencias de conducir (abre en una nueva ventana)">Licencias de conducir</a></li>
+													<li><a href="https://tramites.laplata.gob.ar/comercio" target="_blank" rel="noopener noreferrer" aria-label="Habilitaciones Comerciales (abre en una nueva ventana)">Habilitaciones Comerciales</a></li>
+													<li><a href="https://www.apronline.gob.ar/index.php?modulo=tramites" target="_blank" rel="noopener noreferrer" aria-label="APR (abre en una nueva ventana)">APR</a></li>
+													<li><a href="https://tramites.laplata.gob.ar/obrasparticulares/" target="_blank" rel="noopener noreferrer" aria-label="Obras particulares (abre en una nueva ventana)">Obras particulares</a></li>
+													<li><a href="https://apronline.gob.ar/?modulo=tramites&tributo=15" target="_blank" rel="noopener noreferrer" aria-label="Catastro (abre en una nueva ventana)">Catastro</a></li>
+													<li><a href="https://tramites.laplata.gob.ar/planeamiento/" target="_blank" rel="noopener noreferrer" aria-label="Planeamiento y ordenamiento ambiental (abre en una nueva ventana)">Planeamiento y ordenamiento ambiental</a></li>
+													<li><a href="https://tramites.laplata.gob.ar/mesaentrada/" target="_blank" rel="noopener noreferrer" aria-label="Mesa general de entradas (abre en una nueva ventana)">Mesa general de entradas</a></li>
 												</ul>
 											</li>
 										</ul>
@@ -114,11 +131,11 @@
 							</div>
 							<div class="col-md-auto">
 								<ul class="social text-right">
-									<li><a href="https://www.instagram.com/laplata.capital/" target="_blank" rel="noopener noreferrer"><i class="icofont-instagram" target="_blank"></i></a></li>								
-									<li><a href="https://x.com/laplatamlp?lang=es" target="_blank" rel="noopener noreferrer"><i class="icofont-x"></i></a></li>
-									<li><a href="https://www.facebook.com/MunicipalidadDeLaPlata/?fref=ts" target="_blank" rel="noopener noreferrer"><i class="icofont-facebook" target="_blank"></i></a></li>
-									<li><a href="https://radiociudad933.laplata.gob.ar/" target="_blank" rel="noopener noreferrer"><i class="ico-radio" target="_blank" style="background-size: contain;background-repeat: no-repeat;"></i></a></li>
-									<li><a href="https://tramites.laplata.gob.ar/cam/#mapa" target="_blank" rel="noopener noreferrer"><i class="ico-mapa"></i></a></li>
+									<li><a href="https://www.instagram.com/laplata.capital/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de La Plata (abre en una nueva ventana)"><i class="icofont-instagram"></i></a></li>								
+									<li><a href="https://x.com/laplatamlp?lang=es" target="_blank" rel="noopener noreferrer" aria-label="X de La Plata (abre en una nueva ventana)"><i class="icofont-x"></i></a></li>
+									<li><a href="https://www.facebook.com/MunicipalidadDeLaPlata/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook de la Municipalidad de La Plata (abre en una nueva ventana)"><i class="icofont-facebook"></i></a></li>
+									<li><a href="https://radiociudad933.laplata.gob.ar/" target="_blank" rel="noopener noreferrer" aria-label="Radio Ciudad 93.3 (abre en una nueva ventana)"><i class="ico-radio" style="background-size: contain;background-repeat: no-repeat;"></i></a></li>
+									<li><a href="https://tramites.laplata.gob.ar/cam/#mapa" target="_blank" rel="noopener noreferrer" aria-label="Mapa de trámites CAM (abre en una nueva ventana)"><i class="ico-mapa"></i></a></li>
 								</ul>
 							</div>
 						</div>
@@ -151,7 +168,7 @@
 								<div class="text-center" style="margin: 10px;">
 									<a href="cam-institucional.html" class="btn inv my-2"><span class="mas">+</span> Información</a>
 									<!-- <div class="box-shadow-gal"></div> -->
-									<a href="https://turnos.laplata.gob.ar" target="_blank" rel="noopener noreferrer" class="btn bg-color-1 blanco my-2">Sacar turno <span class="mas">+</span></a>
+									<a href="https://turnos.laplata.gob.ar" target="_blank" rel="noopener noreferrer" class="btn bg-color-1 blanco my-2" aria-label="Sacar turno (abre el sistema de turnos en una nueva ventana)">Sacar turno <span class="mas">+</span></a>
 								</div>
 							</div>
 						</div>
@@ -268,7 +285,7 @@
 				<div class="row justify-content-md-center">
 					<div class="col-md-5 col-12">
 						<div class="text-center" style="margin: 10px;">
-							<a href="https://turnos.laplata.gob.ar" target="_blank" rel="noopener noreferrer" class="turno btn bg-color-1 blanco my-2">Sacar turno <span class="mas">+</span></a>
+							<a href="https://turnos.laplata.gob.ar" target="_blank" rel="noopener noreferrer" class="turno btn bg-color-1 blanco my-2" aria-label="Sacar turno (abre el sistema de turnos en una nueva ventana)">Sacar turno <span class="mas">+</span></a>
 							<!-- <div class="box-shadow-gal"></div> -->
 						</div>
 					</div>

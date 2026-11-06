@@ -63,7 +63,7 @@ SOFTWARE.
           <span class="turnos-marca-separador"></span>
           <img class="turnos-municipal-logo" src="https://turnos.laplata.gob.ar/public/images/logo_muni_black.png" alt="Municipalidad de La Plata">
         </a>
-        <a href="https://turnos.laplata.gob.ar/faq" target="_blank" rel="noopener" class="nav-faq">Preguntas frecuentes</a>
+        <a href="https://turnos.laplata.gob.ar/faq" target="_blank" rel="noopener noreferrer" class="nav-faq" aria-label="Preguntas frecuentes (abre en una nueva ventana)">Preguntas frecuentes</a>
       </nav>
       <main>
         <div id="content">
@@ -105,14 +105,14 @@ SOFTWARE.
         <p class="wizard-ayuda">Dirección donde recibís las notificaciones municipales.</p>
         <div class="campo-nuevo"><label>Localidad</label><select class="input-nuevo" ng-model="form.localidad" name="localidad" required><option value="" disabled>Seleccionar</option><option ng-repeat="loc in localidades" value="{{loc}}">{{loc}}</option></select><div class="campo-error" ng-show="mostrarError('localidad')">{{errRequerido}}</div></div>
         <div class="fila fila-direccion"><div class="campo-nuevo campo-calle"><label>Calle</label><input class="input-nuevo" ng-model="form.calle" name="calle" maxlength="150" required placeholder="Calle"><div class="campo-error" ng-show="mostrarError('calle')">{{errRequerido}}</div></div><div class="campo-nuevo"><label>Altura</label><input class="input-nuevo" ng-model="form.altura" name="altura" maxlength="20" required placeholder="Altura"><div class="campo-error" ng-show="mostrarError('altura')">{{errRequerido}}</div></div><div class="campo-nuevo"><label>Piso</label><input class="input-nuevo" ng-model="form.piso" name="piso" maxlength="20" placeholder="Piso"></div><div class="campo-nuevo"><label>Depto</label><input class="input-nuevo" ng-model="form.depto" name="depto" maxlength="20" placeholder="Depto"></div></div>
-        <label class="campo-checkbox"><input type="checkbox" ng-model="form.aceptaTerminos" required name="aceptaTerminos"><span>Al continuar, aceptás nuestra <a href="https://www.laplata.gob.ar/#/transparencia/privacidad" target="_blank" rel="noopener noreferrer">política de privacidad</a>.</span></label>
+        <label class="campo-checkbox"><input type="checkbox" ng-model="form.aceptaTerminos" required name="aceptaTerminos"><span>Al continuar, aceptás nuestra <a href="https://www.laplata.gob.ar/#/transparencia/privacidad" target="_blank" rel="noopener noreferrer" aria-label="Política de privacidad (abre en una nueva ventana)">política de privacidad</a>.</span></label>
       </section>
       <div class="wizard-acciones"><button class="btn-pildora" type="submit" ng-disabled="isLoading">{{paso === 3 ? 'REGISTRARME Y CONTINUAR' : 'CONTINUAR'}}</button></div>
     </form>
   </div>
 
-  <div class="mail-enviado-panel activo-enviado" ng-show="estadoEnvio === 'exito'"><img class="icono-hexagono" src="https://turnos.laplata.gob.ar/public/images/hexagono-check.svg" alt=""><h2>Mail enviado</h2><p>Revisá tu casilla de correo y hacé click en el enlace que te enviamos para continuar.</p><div class="mail-enviado-chip">{{form.email}}</div><small>Recordá revisar tu correo no deseado (spam).</small><a class="btn-pildora resultado-volver" href="https://turnos.laplata.gob.ar/">VOLVER AL INICIO</a></div>
-  <div class="mail-enviado-panel mail-error-panel activo-enviado" ng-show="estadoEnvio === 'error'"><div class="resultado-error-icon">!</div><h2>No pudimos enviar el email</h2><p>{{mensajeError || 'Ocurrió un problema al procesar la solicitud. Intentá nuevamente más tarde.'}}</p><button type="button" class="btn-pildora" ng-click="reintentar()">INTENTAR NUEVAMENTE</button><a class="resultado-link" href="https://turnos.laplata.gob.ar/">VOLVER AL INICIO</a></div>
+  <div class="mail-enviado-panel activo-enviado" ng-show="estadoEnvio === 'exito'"><img class="icono-hexagono" src="https://turnos.laplata.gob.ar/public/images/hexagono-check.svg" alt=""><h2>Mail enviado</h2><p>Revisá tu casilla de correo y hacé click en el enlace que te enviamos para continuar.</p><div class="mail-enviado-chip">{{form.email}}</div><small>Recordá revisar tu correo no deseado (spam).</small><a class="btn-pildora resultado-volver" href="https://turnos.laplata.gob.ar/" target="_blank" rel="noopener noreferrer" aria-label="Volver al inicio (abre en una nueva ventana)">VOLVER AL INICIO</a></div>
+  <div class="mail-enviado-panel mail-error-panel activo-enviado" ng-show="estadoEnvio === 'error'"><div class="resultado-error-icon">!</div><h2>No pudimos enviar el email</h2><p>{{mensajeError || 'Ocurrió un problema al procesar la solicitud. Intentá nuevamente más tarde.'}}</p><button type="button" class="btn-pildora" ng-click="reintentar()">INTENTAR NUEVAMENTE</button><a class="resultado-link" href="https://turnos.laplata.gob.ar/" target="_blank" rel="noopener noreferrer" aria-label="Volver al inicio (abre en una nueva ventana)">VOLVER AL INICIO</a></div>
 </div>
     </div>
     </main>
